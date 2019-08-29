@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import os
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -25,12 +25,11 @@ setup(
     author_email='cwhite@wikimedia.org',
     #url='',
     license='GPL',
-    packages=find_packages(),
-    zip_safe=False,
+    packages=['prometheus_swagger_exporter'],
     install_requires=install_requires,
     entry_points={
         'console_scripts': [
-            'prometheus-swagger-exporter = src.main:main'
+            'prometheus-swagger-exporter = prometheus_swagger_exporter.main:main'
         ]
     },
 )

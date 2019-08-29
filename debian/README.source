@@ -1,0 +1,9 @@
+Build Steps
+
+export DEBFULLNAME=Maintainer Name
+export DEBEMAIL=Maintainer Email
+export DIST=Target Distribution
+
+dh_make -c apache --createorig
+dpkg-source -b .
+cowbuilder --build ../prometheus-swagger-exporter_$(dpkg-parsechangelog -n1 -SVersion).dsc
