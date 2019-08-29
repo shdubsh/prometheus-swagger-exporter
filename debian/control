@@ -1,0 +1,33 @@
+Source: prometheus-swagger-exporter
+Section: python
+Priority: optional
+Maintainer: Cole White <cwhite@wikimedia.org>
+Build-Depends: debhelper (>=10), dh-python, python-all (>= 2.6.6-3~),
+               python-setuptools, python3-all, python3-setuptools,
+               python-gevent (>= 1.1), python3-gevent (>= 1.1),
+               python-prometheus-client (>= 0.0.18),
+               python3-prometheus-client (>= 0.0.18),
+               python-bottle (>= 0.12), python3-bottle (>= 0.12),
+               python-service-checker (>= 0.1.6),
+               python3-service-checker (>= 0.1.6)
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.5
+
+Package: python-prometheus-swagger-exporter
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}, python-pkg-resources
+Description: A Prometheus exporter that renders metrics from requests
+ executed by service-checker, a generic swagger-based webservice
+ checker (Python 2).
+ .
+ This package installs the library for Python 2.
+
+Package: python3-prometheus-swagger-exporter
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, python3-pkg-resources
+Description: A Prometheus exporter that renders metrics from requests
+ executed by service-checker, a generic swagger-based webservice
+ checker (Python 3).
+ .
+ This package installs the library for Python 3.

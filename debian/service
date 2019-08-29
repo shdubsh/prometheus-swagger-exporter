@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus swagger exporter
+
+[Service]
+Restart=always
+User=prometheus
+EnvironmentFile=-/etc/default/prometheus-swagger-exporter
+ExecStart=/usr/bin/prometheus-swagger-exporter $ARGS
+
+[Install]
+WantedBy=multi-user.target

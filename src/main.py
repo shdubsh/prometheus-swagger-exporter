@@ -61,5 +61,11 @@ def metrics():
     return generate_latest(METRICS)
 
 
+def main():
+    # Possible port allocation collision
+    # https://github.com/prometheus/prometheus/wiki/Default-port-allocations
+    run(host='localhost', port='9220')
+
+
 if __name__ == '__main__':
-    run(host='localhost', port='8080')
+    main()
