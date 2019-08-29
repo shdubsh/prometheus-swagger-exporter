@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 
 from bottle import run, route, request
@@ -16,6 +16,10 @@ class MetricsCollection(list):
     def collect(self):
         for x in self:
             yield x
+
+    # python2.7 does not have clear()
+    def clear(self):
+        del self[:]
 
 
 METRICS = MetricsCollection()
