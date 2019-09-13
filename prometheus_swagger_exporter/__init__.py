@@ -2,7 +2,7 @@
 
 from bottle import run, route, request
 from servicechecker import CheckerBase
-from servicechecker.swagger import CheckService
+from servicechecker.swagger import CheckService, EndpointRequest
 from servicechecker.metrics import Metrics
 from gevent import monkey; monkey.patch_all()  # noqa
 import gevent
@@ -37,12 +37,12 @@ class Prometheus(Metrics):
 
 
 def get_metrics(host_ip, base_url, spec_url='/?spec', timeout=5):
+    EndpointRequest.metrics_manager = Prometheus(hostname=host_ip)
     checker = CheckService(
         host_ip,
         base_url,
         timeout,
-        spec_url,
-        metrics_manager=Prometheus(hostname=host_ip)
+        spec_url
     )
     # Spawn the downloaders
     checks = [
@@ -53,7 +53,7 @@ def get_metrics(host_ip, base_url, spec_url='/?spec', timeout=5):
         } for ep, data in checker.get_endpoints()
     ]
     gevent.joinall([v['job'] for v in checks], CheckerBase.nrpe_timeout - 2)
-    return checker.metrics_manager.metrics
+    return EndpointRequest.metrics_manager.metrics
 
 
 @route('/v1/metrics')
